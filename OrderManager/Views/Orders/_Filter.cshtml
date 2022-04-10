@@ -1,0 +1,26 @@
+﻿@model OrderManager.Models.Provider
+
+<form asp-action="Index" asp-controller="Orders" method="get">
+    <div class="form-row align-items-center">
+        <div class="col-auto">
+            <div class="form-group">
+                Provider
+                <select asp-for="Id" asp-items="ViewBag.Providers" class="form-control">
+                    <option selected="selected" disabled="disabled">Provider</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-auto" style="margin-bottom: 16px">
+            From <input name="from" class="form-control" value="@ViewBag.DateFrom" type="date"/>    
+        </div>
+        <div class="col-auto" style="margin-bottom: 16px">
+            To <input name="to" class="form-control" value="@ViewBag.DateTo" type="date"/>
+        </div>
+        <div class="col-auto" style="margin-top: 8px">
+            <input name="search" class="form-control" value="@ViewBag.Search" type="search" autocomplete="off" placeholder="Search here..."/>
+        </div>
+        <div class="col-auto" style="margin-top: 8px">
+            <input class="btn btn-info" type="submit" value="Filter" />
+        </div>
+    </div>
+</form>
