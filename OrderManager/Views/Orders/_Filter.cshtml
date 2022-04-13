@@ -1,12 +1,10 @@
-﻿@model OrderManager.Models.Provider
-
-<form asp-action="Index" asp-controller="Orders" method="get">
+﻿<form method="get">
     <div class="form-row align-items-center">
         <div class="col-auto">
             <div class="form-group">
-                Provider
-                <select asp-for="Id" asp-items="ViewBag.Providers" class="form-control">
-                    <option selected="selected" disabled="disabled">Provider</option>
+                Provider 
+                <select name="provider" asp-items="@ViewBag.Providers" class="form-control" >
+                    <option value="0" selected>All</option>
                 </select>
             </div>
         </div>
