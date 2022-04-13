@@ -1,43 +1,64 @@
-﻿@model OrderManager.Models.Order
+﻿@model OrderManager.Models.OrderView
 
 @{
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<h4>Order</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="ProviderId" class="control-label"></label>
-                <input asp-for="ProviderId" class="form-control" />
-                <span asp-validation-for="ProviderId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Number" class="control-label"></label>
-                <input asp-for="Number" class="form-control" />
-                <span asp-validation-for="Number" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
-                <input asp-for="Date" class="form-control" />
-                <span asp-validation-for="Date" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+<h2>Edit Order</h2>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-secondary" asp-action="Index">Back to List</a>
 </div>
+
+<hr />
+
+<form asp-action="Edit" asp-route-id="@Model.Id" onsubmit="return jQueryAjaxPost(this)">
+<div class="form-row align-tems-center">
+    <input type="hidden" id="OrderId" value="@Model.Id" />
+    <div class="col-auto">
+        <div class="form-group">
+            <label asp-for="ProviderName" class="control-label"></label>
+            <select asp-for="ProviderId" asp-items="ViewBag.Providers" id="OrderProvider" class="form-control"></select>
+        </div>
+    </div>
+    <div class="col-auto">
+        <div class="form-group">
+            <label asp-for="Date" class="control-label"></label>
+            <input asp-for="Date" id="OrderDate" class="form-control" />
+        </div>
+    </div>
+    <div class="col-auto">
+        <div class="form-group">
+            <label asp-for="Number" class="control-label"></label>
+            <input asp-for="Number" id="OrderNumber" class="form-control" />
+            <span asp-validation-for="Number" class="text-danger"></span>
+        </div>
+    </div> 
+    <div class="col-auto" style="margin-top: 32px">
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Save" />
+        </div>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="featured-box featured-box featured-box-dark featured-box-text-left jquery_accordion_content">
+        @foreach(var item in Model.ItemList){
+            <div>
+                @await Html.PartialAsync("_Item", item)     
+            </div>
+        }
+        <div class="AddNewItem">
+
+        </div>
+    </div>
+</div>
+</form>
+<br />
+
+<div class="form-content">
+    <button id="Btn_AddItemSet" class="btn btn-success">Add Item</button>
+</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

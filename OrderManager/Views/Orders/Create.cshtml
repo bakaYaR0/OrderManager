@@ -1,42 +1,59 @@
-﻿@model OrderManager.Models.Order
+﻿@model OrderManager.Models.OrderView
 
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h2>Create New Order</h2>
 
-<h4>Order</h4>
+<div>
+    <a class="btn btn-secondary" asp-action="Index">Back to List</a>
+</div>
+
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ProviderId" class="control-label"></label>
-                <input asp-for="ProviderId" class="form-control" />
-                <span asp-validation-for="ProviderId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Number" class="control-label"></label>
-                <input asp-for="Number" class="form-control" />
-                <span asp-validation-for="Number" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
-                <input asp-for="Date" class="form-control" />
-                <span asp-validation-for="Date" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+
+<div class="form-row align-tems-center">
+    <input type="hidden" id="OrderId" asp-for="Id" />
+    <div class="col-auto">
+        <div class="form-group">
+            Provider :
+            <select asp-for="ProviderId" asp-items="ViewBag.Providers" class="form-control" id="OrderProvider">
+                <option selected="selected" disabled="disabled">Select Provider</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-auto">
+        <div class="form-group">
+            Date :
+            <input class="form-control" id="OrderDate" type="date" value="@DateTime.Today">
+        </div>
+    </div>
+    <div class="col-auto">
+        <div class="form-group">
+            Number :
+            <input class="form-control" data-val="true" id="OrderNumber" type="text" autocomplete="off">
+        </div>
+    </div>
+    <div class="col-auto" style="margin-top: 24px">
+        <input type="button" id="Btn_Create" class="btn btn-primary" value="Create Order" />
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="panel panel-default">
+    <div class="featured-box featured-box featured-box-dark featured-box-text-left jquery_accordion_content">
+        <div>
+            <div class="AddNewItem">
+
+            </div>
+        </div>
+    </div>
 </div>
+<br />
+
+<div class="form-content">
+    <button id="Btn_AddItemSet" class="btn btn-success">Add Item</button>
+</div>
+<br/>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
