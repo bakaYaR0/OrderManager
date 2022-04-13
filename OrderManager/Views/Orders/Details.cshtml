@@ -1,21 +1,18 @@
-﻿@model OrderManager.Models.Order
+﻿@model OrderManager.Models.OrderView
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+
+<h2>Order Details</h2>
+
+<a class="btn btn-secondary" style="align-self:" asp-action="Index">Back to List</a>
+<hr />
 
 <div>
-    <h4>Order</h4>
-    <hr />
+    
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProviderId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProviderId)
-        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Number)
         </dt>
@@ -28,9 +25,53 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Date)
         </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ProviderId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ProviderId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ProviderName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ProviderName)
+        </dd>
+
     </dl>
 </div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th>
+                Unit
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ItemList) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Unit)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
 </div>
