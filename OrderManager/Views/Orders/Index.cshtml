@@ -1,5 +1,4 @@
-﻿@using OrderManager.Models
-@model IEnumerable<OrderManager.Models.OrderView>
+﻿@model IEnumerable<OrderManager.Models.OrderView>
 
 @{
     ViewData["Title"] = "Orders";
@@ -8,7 +7,7 @@
 <h2>Orders</h2>
 
 <div id="filter-all">
-    @await Html.PartialAsync("_Filter", new Provider())
+    @await Html.PartialAsync("_Filter")
 </div>
 
 <div id="view-all">
