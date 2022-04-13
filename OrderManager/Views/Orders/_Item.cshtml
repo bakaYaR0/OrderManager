@@ -1,0 +1,38 @@
+﻿@model OrderManager.Models.OrderItem
+
+<div id="ItemSetDiv" class="row">
+    <input type="hidden" id="ItemId" value="@Model.Id" />
+    <div class="action-item col-sm-3 target">
+        <div class="form-group">
+
+            Name :
+
+            <input asp-for="Name" value="@Model.Name" class="form-control text-box single-line" data-val="true" id="ItemName" type="text" autocomplete="off">
+        </div>
+    </div>
+
+    <div class="action-item col-sm-3 target">
+        <div class="form-group">
+
+            Quantity :
+
+            <input asp-for="Quantity" value="@Model.Quantity" class="form-control text-box single-line" data-val="true" id="ItemQuantity" type="number" autocomplete="off">
+        </div>
+
+    </div>
+    
+    <div class="col-sm-5 target">
+        <div class="form-group">
+
+            Unit :
+
+            <input asp-for="Unit" value="@Model.Unit" class="form-control text-box single-line" data-val="true" id="ItemUnit" type="text" autocomplete="off">
+        </div>
+    </div>
+
+    <div class="col-sm-1 target">
+     
+            <a style="visibility:hidden"> Delete :</a>
+            <button class="btn btn-danger" id="Btn_DeleteItem" type="submit">Delete</button>
+    </div>
+</div>
